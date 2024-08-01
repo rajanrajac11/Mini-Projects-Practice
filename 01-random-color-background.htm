@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="changeBackground('red')">Red</button>
+    <button onclick="changeBackground('green')">Green</button>
+    <button onclick="changeBackground('aqua')">Aqua</button>
+    <button onclick="changeBackground('')">Random</button>
+  </body>
+  <script>
+    function getRandomColor() {
+      let colorLetters = "0123456789ABCDEF";
+      colorCode = "#";
+      for (let i = 0; i < 6; i++) {
+        colorCode += colorLetters[Math.floor(Math.random() * 16)];
+      }
+      return colorCode;
+    }
+
+    function changeBackground(color) {
+      if (color === "") {
+        document.body.style.backgroundColor = getRandomColor();
+      } else {
+        document.body.style.backgroundColor = color;
+      }
+    }
+  </script>
+</html>
