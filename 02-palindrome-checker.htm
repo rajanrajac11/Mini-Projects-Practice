@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Palindrome Checker</h3>
+    <input
+      type="text"
+      name=""
+      id="js-input"
+      onkeydown="checkKey(event)"
+    /><button onclick="checkPalindrome()">Check</button>
+    <p id="result"></p>
+  </body>
+  <script>
+    function checkKey(event) {
+      if (event.key === "Enter") {
+        checkPalindrome();
+      }
+    }
+
+    function checkPalindrome() {
+      let inputElement = document.querySelector("#js-input").value;
+      let reversed = "";
+
+      if (inputElement === "") {
+        alert("Please Enter a String");
+      } else {
+        for (let i = inputElement.length - 1; i >= 0; i--) {
+          reversed += inputElement[i];
+        }
+
+        if (reversed === inputElement) {
+          document.querySelector("#result").innerHTML = "Palindrome";
+        } else {
+          document.querySelector("#result").innerHTML = "Not Palindrome";
+        }
+      }
+    }
+  </script>
+</html>
