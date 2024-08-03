@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h3>Stop Watch</h3>
+    <p class="js-display">00:00</p>
+    <button onclick="startWatch()">Start</button>
+    <button onclick="stopWatch()">Stop</button>
+    <button onclick="resetWatch()">Reset</button>
+  </body>
+  <script>
+    let sec = 0;
+    let min = 0;
+    let interval = null;
+    let time = "";
+    const displayElement = document.querySelector(".js-display");
+
+    function padStart(value) {
+      return String(value).padStart(2, "0"); //return 2 digit number. if there isn't add 0 at the start.
+    }
+
+    function setTime() {
+      min = Math.floor(sec / 60);
+      sec = sec % 60;
+      //   if (min < 10 && sec < 10) {
+      //     time = `0${min}:0${sec}`;
+      //   } else if (min < 10 && sec > 10) {
+      //     time = `0${min}:${sec}`;
+      //   } else if (min > 10 && sec < 10) {
+      //     time = `${min}:0${sec}`;
+      //   } else {
+      //     time = `${min}:${sec}`;
+      //   }
+      displayElement.innerHTML = `${padStart(min)}:${padStart(sec)}`;
+    }
+
+    function timer() {
+      sec++;
+      setTime();
+    }
+
+    function startWatch() {
+      if (interval) stopWatch();
+      interval = setInterval(timer, 1000);
+    }
+
+    function stopWatch() {
+      clearInterval(interval);
+    }
+    function resetWatch() {
+      stopWatch();
+      sec = 0;
+      setTime();
+    }
+  </script>
+</html>
